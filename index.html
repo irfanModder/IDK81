@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Irfan Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary: #6a11cb;
+            --secondary: #2575fc;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --sidebar-width: 250px;
+            --sidebar-collapsed: 0px;
+            --transition: all 0.3s ease;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: var(--light);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+       
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .login-box {
+            background: rgba(26, 26, 46, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .logo-login {
+            font-size: 2.5rem;
+            color: #6a11cb;
+            margin-bottom: 10px;
+        }
+
+        .login-title {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .login-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #6a11cb;
+            box-shadow: 0 0 0 2px rgba(106, 17, 203, 0.3);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 10px;
+            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
+        }
+
+        .login-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(106, 17, 203, 0.6);
+        }
+
+        .error-message {
+            color: #ff6b6b;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .login-note {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+       
+        .dashboard {
+            display: none;
+        }
+
+       
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--sidebar-width);
+            height: 100%;
+            background: rgba(26, 26, 46, 0.97);
+            backdrop-filter: blur(10px);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px 0;
+            transition: var(--transition);
+            z-index: 1000;
+            overflow-y: auto;
+            transform: translateX(0);
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .sidebar.collapsed {
+            transform: translateX(-100%);
+            box-shadow: none;
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .logo-icon {
+            color: #6a11cb;
+            font-size: 1.8rem;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 20px 0;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 5px;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 20px;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            border-left: 3px solid transparent;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .sidebar-menu a:hover {
+            background: rgba(106, 17, 203, 0.2);
+            color: #fff;
+            border-left: 3px solid #6a11cb;
+        }
+
+        .sidebar-menu a.active {
+            background: rgba(106, 17, 203, 0.3);
+            color: #fff;
+            border-left: 3px solid #6a11cb;
+        }
+
+        .sidebar-menu i {
+            font-size: 1.2rem;
+            min-width: 25px;
+        }
+
+        .menu-text {
+            transition: var(--transition);
+            opacity: 1;
+            width: auto;
+        }
+
+        
+        .main-content {
+            margin-left: 0;
+            padding: 20px;
+            transition: var(--transition);
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .sidebar:not(.collapsed) + .main-content {
+            margin-left: var(--sidebar-width);
+        }
+
+        
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+       
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+        }
+
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .user-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+       
+        .sidebar-toggle-x {
+            position: absolute;
+            left: 10px;
+            bottom: -35px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 10px rgba(106, 17, 203, 0.3);
+            z-index: 10;
+        }
+
+        .sidebar-toggle-x:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(106, 17, 203, 0.5);
+        }
+
+        
+        .sidebar.collapsed ~ .main-content .sidebar-toggle-x {
+            display: flex;
+        }
+
+        .sidebar:not(.collapsed) ~ .main-content .sidebar-toggle-x {
+            display: none;
+        }
+
+        .logout-btn {
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .logout-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 65, 108, 0.4);
+        }
+
+        
+        .dashboard-content {
+            display: none;
+        }
+
+        .dashboard-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+       
+        .welcome-section {
+            background: linear-gradient(to right, rgba(106, 17, 203, 0.2), rgba(37, 117, 252, 0.2));
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .welcome-section h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        
+        .skills-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #6a11cb;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-item {
+            background: rgba(26, 26, 46, 0.7);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid #6a11cb;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .skill-bar {
+            height: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            border-radius: 5px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            transition: width 1.5s ease;
+        }
+
+        /* Trending Section */
+        .trending-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .trending-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .trending-item {
+            background: rgba(106, 17, 203, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid rgba(106, 17, 203, 0.2);
+        }
+
+        .trending-item:hover {
+            transform: translateY(-5px);
+            background: rgba(106, 17, 203, 0.2);
+            box-shadow: 0 10px 20px rgba(106, 17, 203, 0.2);
+        }
+
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+       
+        .content-card {
+            background: rgba(26, 26, 46, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .content-header {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .content-title {
+            font-size: 1.8rem;
+            color: #6a11cb;
+        }
+
+        .content-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 5px;
+        }
+
+        
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f0c29, #302b63);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+
+        .loading-screen.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .loader {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.1);
+            border-top: 5px solid #6a11cb;
+            animation: spin 1s linear infinite;
+            margin-bottom: 30px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: textFade 0.5s forwards;
+        }
+
+        .loading-text:nth-child(2) {
+            animation-delay: 3s;
+        }
+
+        .loading-text:nth-child(3) {
+            animation-delay: 6s;
+        }
+
+        @keyframes textFade {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+       
+        .item-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .list-item {
+            background: rgba(106, 17, 203, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid #6a11cb;
+            transition: var(--transition);
+        }
+
+        .list-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(106, 17, 203, 0.2);
+        }
+
+        .list-title {
+            font-size: 1.3rem;
+            color: #6a11cb;
+            margin-bottom: 10px;
+        }
+
+        .price-tag {
+            display: inline-block;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        .rating-stars {
+            color: #FFD700;
+            margin: 10px 0;
+        }
+
+        
+        @media (max-width: 992px) {
+            .sidebar {
+                width: 280px;
+            }
+            
+            .sidebar:not(.collapsed) + .main-content {
+                margin-left: 0;
+            }
+            
+            .sidebar:not(.collapsed) ~ .sidebar-overlay {
+                display: block;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .login-box {
+                padding: 30px 20px;
+            }
+
+            .sidebar {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .main-content {
+                padding: 15px;
+            }
+
+            .sidebar-header {
+                padding: 20px;
+            }
+
+            .welcome-section h1 {
+                font-size: 1.8rem;
+            }
+
+            .skills-container, .trending-items {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar-toggle-x {
+                left: 0;
+                bottom: -30px;
+                width: 32px;
+                height: 32px;
+                font-size: 1rem;
+            }
+            
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .logout-btn {
+                align-self: flex-end;
+            }
+        }
+
+        
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(26, 26, 46, 0.5);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #6a11cb, #2575fc);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(to bottom, #2575fc, #6a11cb);
+        }
+
+        
+        .main-content {
+            -webkit-overflow-scrolling: touch;
+        }
+    </style>
+</head>
+<body>
+   
+    <div class="login-container" id="loginScreen">
+        <div class="login-box">
+            <div class="logo-login">
+                <i class="fas fa-code"></i>
+            </div>
+            <h1 class="login-title">IrfanWebsite</h1>
+            <p class="login-subtitle">Login dulu ya brother v:</p>
+            
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="username"><i class="fas fa-user"></i> Username</label>
+                    <input type="text" id="usernameInput" placeholder="Masukkan username" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="password"><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="passwordInput" placeholder="Masukkan password" required>
+                </div>
+                
+                <div class="error-message" id="errorMessage">
+                    Username dan password gak boleh kosong bang 🥰
+                </div>
+                
+                <button type="submit" class="login-btn" id="submitLogin">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+            </form>
+            
+            <p class="login-note">
+                <i class="fas fa-info-circle"></i> Isi username sama password acak juga boleh asal jgn kosong (:
+            </p>
+        </div>
+    </div>
+
+   
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader"></div>
+        <div class="loading-text" id="loadingText1">Hola <span id="loadingUsername">User</span></div>
+        <div class="loading-text" id="loadingText2">Welcome in website irfan</div>
+        <div class="loading-text" id="loadingText3">Good luck!</div>
+    </div>
+
+  
+    <div class="dashboard" id="dashboard">
+       
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-code logo-icon"></i>
+                    <span class="menu-text">IrfanWebsite</span>
+                </div>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="#" class="active" data-target="dashboardContent">
+                    <i class="fas fa-home"></i>
+                    <span class="menu-text">Dashboard</span>
+                </a></li>
+                <li><a href="#" data-target="muridList">
+                    <i class="fas fa-users"></i>
+                    <span class="menu-text">Murid List</span>
+                </a></li>
+                <li><a href="#" data-target="toolsSelling">
+                    <i class="fas fa-tools"></i>
+                    <span class="menu-text">Tools Selling</span>
+                </a></li>
+                <li><a href="#" data-target="rateUser">
+                    <i class="fas fa-star"></i>
+                    <span class="menu-text">Rate User</span>
+                </a></li>
+                <li><a href="#" data-target="comboList">
+                    <i class="fas fa-gem"></i>
+                    <span class="menu-text">Combo List Price</span>
+                </a></li>
+            </ul>
+        </div>
+
+       
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+       
+        <div class="main-content" id="mainContent">
+           
+            <div class="header">
+                <div class="user-info">
+                    <div class="user-avatar" id="userAvatar">I</div>
+                    <div class="user-text">
+                        <h3 id="usernameDisplay">User</h3>
+                        <p>Welcome back!</p>
+                    </div>
+                    
+                    <button class="sidebar-toggle-x" id="sidebarToggleX">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+                <button class="logout-btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+
+            
+            <div class="dashboard-content active" id="dashboardContent">
+                <div class="welcome-section">
+                    <h1>Hi <span id="welcomeUsername">User</span>, selamat datang di irfanWebsite selamat belanja 👌</h1>
+                    <p>Tempat terbaik untuk belajar pemrograman dan mendapatkan tools premium</p>
+                </div>
+
+                <div class="skills-section">
+                    <h2 class="section-title">My Skills</h2>
+                    <div class="skills-container">
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Python</span>
+                                <span>89%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 89%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Javascript</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>HTML</span>
+                                <span>98%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 98%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>CSS</span>
+                                <span>89%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 89%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Lua</span>
+                                <span>79%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 79%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>C++</span>
+                                <span>67%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 67%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="trending-section">
+                    <h2 class="section-title">Trending</h2>
+                    <div class="trending-items">
+                        <div class="trending-item">
+                            <i class="fas fa-search" style="font-size: 2rem; margin-bottom: 10px; color: #6a11cb;"></i>
+                            <h3>Tools Checker Pubg</h3>
+                        </div>
+                        <div class="trending-item">
+                            <i class="fas fa-map" style="font-size: 2rem; margin-bottom: 10px; color: #6a11cb;"></i>
+                            <h3>Desain Map</h3>
+                        </div>
+                        <div class="trending-item">
+                            <i class="fas fa-cube" style="font-size: 2rem; margin-bottom: 10px; color: #6a11cb;"></i>
+                            <h3>Blender 3D Roblox</h3>
+                        </div>
+                        <div class="trending-item">
+                            <i class="fas fa-shield-alt" style="font-size: 2rem; margin-bottom: 10px; color: #6a11cb;"></i>
+                            <h3>Ddos Tools</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer">
+                    <p>© irfan 2026 Allright Reverse</p>
+                </div>
+            </div>
+
+            
+            <div class="dashboard-content" id="muridList">
+                <div class="content-card">
+                    <div class="content-header">
+                        <h2 class="content-title">Murid List</h2>
+                        <p class="content-subtitle">Daftar kelas yang tersedia untuk belajar pemrograman</p>
+                    </div>
+                    <div class="item-list">
+                        <div class="list-item">
+                            <h3 class="list-title">Murid Lua</h3>
+                            <p><strong>Benefit:</strong></p>
+                            <ul style="margin-left: 20px; margin-top: 10px;">
+                                <li>Di ajarkan basic lua + logicnya</li>
+                                <li>Di ajarkan semua remote event + Fungsi remote event</li>
+                                <li>Belajar Private 100%</li>
+                                <li>Di ajarkan sampai bener-bener bisa lua</li>
+                                <li>Full ilmu penting + utama lua</li>
+                            </ul>
+                            <div class="price-tag">35k (permanen)</div>
+                        </div>
+                        <div class="list-item">
+                            <h3 class="list-title">Murid Python + Javascript</h3>
+                            <p><strong>Benefit:</strong></p>
+                            <p><strong>Python:</strong></p>
+                            <ul style="margin-left: 20px; margin-top: 5px;">
+                                <li>Di ajarkan basic + logic python</li>
+                                <li>Di ajarkan semua ilmu python</li>
+                                <li>Banyak soalnya + tugas seru pastinya</li>
+                                <li>Murid private Privasi aman 100%</li>
+                                <li>Dll Di ajarkan sampai bisa</li>
+                            </ul>
+                            <p style="margin-top: 10px;"><strong>Javascript:</strong></p>
+                            <ul style="margin-left: 20px; margin-top: 5px;">
+                                <li>Diajarkan basic + logic javascript</li>
+                                <li>Di ajarkan semua framework javascript</li>
+                                <li>Di ajarkan ilmu + ada tugas super menarik</li>
+                                <li>Dan pastinya kelas private 100%</li>
+                            </ul>
+                            <div class="price-tag">50k</div>
+                            <p style="margin-top: 10px; font-size: 0.9em;">Tenang hanya 50k Saja kamu sudah bisa itu</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+           
+            <div class="dashboard-content" id="toolsSelling">
+                <div class="content-card">
+                    <div class="content-header">
+                        <h2 class="content-title">Tools Selling</h2>
+                        <p class="content-subtitle">Tools premium dengan kualitas terbaik</p>
+                    </div>
+                    <div class="item-list">
+                        <div class="list-item">
+                            <h3 class="list-title">Tools Cracked Database (TCD)</h3>
+                            <p>Tools untuk melakukan crack database dengan metode terbaru</p>
+                            <div class="price-tag">35$ / 538rb</div>
+                        </div>
+                        <div class="list-item">
+                            <h3 class="list-title">Tools Sql Injection</h3>
+                            <p>Tools untuk melakukan SQL injection dengan berbagai metode</p>
+                            <div class="price-tag">120$ / 2jt</div>
+                        </div>
+                        <div class="list-item">
+                            <h3 class="list-title">Tools Checker ML</h3>
+                            <p>Tools untuk mengecek akun Mobile Legends dengan akurasi tinggi</p>
+                            <div class="price-tag">60$ / 1.5jt</div>
+                        </div>
+                        <div class="list-item">
+                            <h3 class="list-title">Tools MultiChecker</h3>
+                            <p>Tools untuk mengecek akun ML, Tiktok, CODM, PUBG sekaligus</p>
+                            <div class="price-tag">267$ / 4.5jt</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+          
+            <div class="dashboard-content" id="rateUser">
+                <div class="content-card">
+                    <div class="content-header">
+                        <h2 class="content-title">Rate User</h2>
+                        <p class="content-subtitle">Testimoni dari pembeli dan murid yang sudah bergabung</p>
+                    </div>
+                    <div class="item-list">
+                        <div class="list-item">
+                            <h3 class="list-title">Rating dari M*****</h3>
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p><strong>Pesan:</strong></p>
+                            <p>"Website sangat keren dan responsive, harga terjangkau dan pelayanan cepat."</p>
+                        </div>
+                        <div class="list-item">
+                            <h3 class="list-title">Rating dari R***</h3>
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p><strong>Pesan:</strong></p>
+                            <p>"Murah banget bang suer deh ga nyesel beli disini, pelayanan cepat dan sangat dana pelajar makasih irfan."</p>
+                        </div>
+                        <div class="list-item">
+                            <h3 class="list-title">Rating dari Fery*****</h3>
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p><strong>Pesan:</strong></p>
+                            <p>"Gacor banget bang murid luanya, saya belajar disini cuma 5 bulan sudah bisa lua + desain map, makasih bang sehat selalu auto langganan."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+      
+            <div class="dashboard-content" id="comboList">
+                <div class="content-card">
+                    <div class="content-header">
+                        <h2 class="content-title">Combo List Price</h2>
+                        <p class="content-subtitle">Paket combo terbaik dengan harga spesial</p>
+                    </div>
+                    <div class="item-list">
+                        <div class="list-item">
+                            <h3 class="list-title">Combo ML (private ulp)</h3>
+                            <ul style="margin-left: 20px; margin-top: 10px;">
+                                <li>1k line = 30k</li>
+                                <li>2k line = 50k</li>
+                                <li>3k line = 70k</li>
+                                <li>5k line = 130k</li>
+                            </ul>
+                        </div>
+                        <div class="list-item">
+                            <h3 class="list-title">Combo Tiktok (private ulp)</h3>
+                            <ul style="margin-left: 20px; margin-top: 10px;">
+                                <li>1k line = 40k</li>
+                                <li>3k line = 120k</li>
+                                <li>5k line = 180k</li>
+                            </ul>
+                        </div>
+                        <div class="list-item">
+                            <h3 class="list-title">Combo Codm (private tools)</h3>
+                            <ul style="margin-left: 20px; margin-top: 10px;">
+                                <li>1k line = 70k</li>
+                                <li>3k line = 210k</li>
+                            </ul>
+                        </div>
+                        <div class="list-item">
+                            <h3 class="list-title">Combo Pubg</h3>
+                            <p><em>Coming Soon</em></p>
+                        </div>
+                    </div>
+                    <div style="margin-top: 30px; padding: 20px; background: rgba(106, 17, 203, 0.1); border-radius: 10px;">
+                        <h3>Information:</h3>
+                        <p>Untuk Yang codm dan tiktok mengapa mahal? Karena sangat lumayan sulit untuk mendapatkan nya jdi maklumin saja kawan (:</p>
+                    </div>
+                    <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                        <p>© 2026 irfan Modder Website</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        
+        const loginScreen = document.getElementById('loginScreen');
+        const dashboard = document.getElementById('dashboard');
+        const loginForm = document.getElementById('loginForm');
+        const usernameInput = document.getElementById('usernameInput');
+        const passwordInput = document.getElementById('passwordInput');
+        const errorMessage = document.getElementById('errorMessage');
+        const loadingScreen = document.getElementById('loadingScreen');
+        const loadingUsername = document.getElementById('loadingUsername');
+        
+        
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        const sidebarToggleX = document.getElementById('sidebarToggleX');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const usernameDisplay = document.getElementById('usernameDisplay');
+        const welcomeUsername = document.getElementById('welcomeUsername');
+        const userAvatar = document.getElementById('userAvatar');
+        const sidebarLinks = document.querySelectorAll('.sidebar-menu a');
+        const dashboardContents = document.querySelectorAll('.dashboard-content');
+        const mainContent = document.getElementById('mainContent');
+        
+        
+        let loggedInUsername = '';
+        let startX = 0;
+        let currentX = 0;
+        let isSwiping = false;
+        let sidebarVisible = true;
+        
+        
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = usernameInput.value.trim();
+            const password = passwordInput.value.trim();
+            
+            
+            if (username === '' || password === '') {
+                errorMessage.textContent = 'Username dan password tidak boleh kosong!';
+                errorMessage.style.display = 'block';
+                
+              
+                loginForm.classList.add('shake');
+                setTimeout(() => {
+                    loginForm.classList.remove('shake');
+                }, 500);
+                
+                return;
+            }
+            
+           
+            loggedInUsername = username;
+            
+           
+            loadingScreen.classList.add('active');
+            loadingUsername.textContent = loggedInUsername;
+            
+            
+            errorMessage.style.display = 'none';
+            
+            
+            setTimeout(() => {
+                loadingScreen.classList.remove('active');
+                
+                
+                loginScreen.style.display = 'none';
+                dashboard.style.display = 'block';
+                
+                
+                usernameDisplay.textContent = loggedInUsername;
+                welcomeUsername.textContent = loggedInUsername;
+                userAvatar.textContent = loggedInUsername.charAt(0).toUpperCase();
+                
+               
+                showNotification(`Selamat datang ${loggedInUsername}!`);
+                
+                
+                initDashboard();
+            }, 10000); // 10 detik
+        });
+        
+        // Logout functionality
+        logoutBtn.addEventListener('click', () => {
+            
+            dashboard.style.display = 'none';
+            loginScreen.style.display = 'flex';
+            
+            
+            usernameInput.value = '';
+            passwordInput.value = '';
+            
+            
+            showNotification('Berhasil logout makasih udah ke website irfan');
+            
+          
+            sidebar.classList.remove('collapsed');
+            sidebarOverlay.classList.remove('active');
+            sidebarToggleX.innerHTML = '<i class="fas fa-bars"></i>';
+            sidebarVisible = true;
+        });
+        
+       
+        function initDashboard() {
+           
+            sidebarToggleX.addEventListener('click', () => {
+                if (sidebar.classList.contains('collapsed')) {
+                    
+                    sidebar.classList.remove('collapsed');
+                    sidebarOverlay.classList.add('active');
+                    sidebarVisible = true;
+                }
+            });
+            
+            
+            sidebarOverlay.addEventListener('click', () => {
+                sidebar.classList.add('collapsed');
+                sidebarOverlay.classList.remove('active');
+                sidebarVisible = false;
+            });
+            
+         
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    
+                    sidebarLinks.forEach(item => item.classList.remove('active'));
+                    
+                    
+                    link.classList.add('active');
+                    
+                
+                    const targetId = link.getAttribute('data-target');
+                    
+                    
+                    dashboardContents.forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    
+                    
+                    document.getElementById(targetId).classList.add('active');
+                    
+                    
+                    if (targetId !== 'dashboardContent') {
+                        const contentTitle = document.querySelector(`#${targetId} .content-title`);
+                        if (contentTitle) {
+                           
+                            const loadingTexts = [
+                                `Welcome ${loggedInUsername}`,
+                                `Ini dia ${contentTitle.textContent} Yang tersedia`,
+                                "Web made by irfan"
+                            ];
+                            
+                            
+                            const loadingOverlay = document.createElement('div');
+                            loadingOverlay.className = 'loading-overlay';
+                            loadingOverlay.innerHTML = `
+                                <div class="loader-small"></div>
+                                <div class="loading-text-overlay">${loadingTexts[0]}</div>
+                                <div class="loading-text-overlay">${loadingTexts[1]}</div>
+                                <div class="loading-text-overlay">${loadingTexts[2]}</div>
+                            `;
+                            
+                            
+                            const style = document.createElement('style');
+                            style.textContent = `
+                                .loading-overlay {
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
+                                    width: 100%;
+                                    height: 100%;
+                                    background: rgba(26, 26, 46, 0.95);
+                                    display: flex;
+                                    flex-direction: column;
+                                    justify-content: center;
+                                    align-items: center;
+                                    z-index: 10;
+                                    border-radius: 15px;
+                                }
+                                .loader-small {
+                                    width: 50px;
+                                    height: 50px;
+                                    border-radius: 50%;
+                                    border: 3px solid rgba(255, 255, 255, 0.1);
+                                    border-top: 3px solid #6a11cb;
+                                    animation: spin 1s linear infinite;
+                                    margin-bottom: 20px;
+                                }
+                                .loading-text-overlay {
+                                    text-align: center;
+                                    font-size: 1.2rem;
+                                    margin-bottom: 10px;
+                                    opacity: 0;
+                                    transform: translateY(20px);
+                                    animation: textFade 0.5s forwards;
+                                }
+                                .loading-text-overlay:nth-child(2) {
+                                    animation-delay: 1s;
+                                }
+                                .loading-text-overlay:nth-child(3) {
+                                    animation-delay: 2s;
+                                }
+                                .loading-text-overlay:nth-child(4) {
+                                    animation-delay: 3s;
+                                }
+                            `;
+                            
+                            document.head.appendChild(style);
+                            document.getElementById(targetId).appendChild(loadingOverlay);
+                            
+                            
+                            setTimeout(() => {
+                                loadingOverlay.remove();
+                                style.remove();
+                            }, 4000);
+                        }
+                    }
+                    
+                    // only mobile
+                    if (window.innerWidth <= 768) {
+                        sidebar.classList.add('collapsed');
+                        sidebarOverlay.classList.remove('active');
+                        sidebarVisible = false;
+                    }
+                });
+            });
+            
+           
+            const skillBars = document.querySelectorAll('.skill-progress');
+            skillBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 300);
+            });
+            
+            
+            setupSwipeToClose();
+        }
+        
+       
+        function setupSwipeToClose() {
+           
+            mainContent.addEventListener('click', (e) => {
+                if (sidebarVisible && window.innerWidth > 768) {
+                    
+                    if (!e.target.closest('.sidebar-toggle-x')) {
+                        sidebar.classList.add('collapsed');
+                        sidebarVisible = false;
+                    }
+                }
+            });
+            
+            
+            let startX = 0;
+            let currentX = 0;
+            let isSwiping = false;
+            
+            mainContent.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                isSwiping = true;
+            });
+            
+            mainContent.addEventListener('touchmove', (e) => {
+                if (!isSwiping || !sidebarVisible) return;
+                
+                currentX = e.touches[0].clientX;
+                const diff = startX - currentX;
+                
+                // crot jir 
+                if (diff > 50) {
+                    sidebar.classList.add('collapsed');
+                    sidebarOverlay.classList.remove('active');
+                    sidebarVisible = false;
+                    isSwiping = false;
+                }
+            });
+            
+            mainContent.addEventListener('touchend', () => {
+                isSwiping = false;
+            });
+            
+            
+            mainContent.addEventListener('mousedown', (e) => {
+                if (!sidebarVisible) return;
+                
+                startX = e.clientX;
+                isSwiping = true;
+            });
+            
+            mainContent.addEventListener('mousemove', (e) => {
+                if (!isSwiping || !sidebarVisible) return;
+                
+                currentX = e.clientX;
+                const diff = startX - currentX;
+                
+                
+                if (diff > 100) {
+                    sidebar.classList.add('collapsed');
+                    sidebarVisible = false;
+                    isSwiping = false;
+                }
+            });
+            
+            mainContent.addEventListener('mouseup', () => {
+                isSwiping = false;
+            });
+            
+            mainContent.addEventListener('mouseleave', () => {
+                isSwiping = false;
+            });
+        }
+        
+     
+        function showNotification(message) {
+            
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(to right, #6a11cb, #2575fc);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 10px;
+                z-index: 9999;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.7s;
+            `;
+            notification.textContent = message;
+            
+           
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes fadeOut {
+                    from { opacity: 1; }
+                    to { opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            document.body.appendChild(notification);
+            
+        
+            setTimeout(() => {
+                notification.remove();
+                style.remove();
+            }, 3000);
+        }
+        
+        
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                20%, 40%, 60%, 80% { transform: translateX(5px); }
+            }
+            .shake {
+                animation: shake 0.5s ease-in-out;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+  </html>
