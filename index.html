@@ -32,7 +32,6 @@
             overflow-x: hidden;
         }
 
-       
         .login-container {
             display: flex;
             justify-content: center;
@@ -134,12 +133,10 @@
             color: rgba(255, 255, 255, 0.6);
         }
 
-       
         .dashboard {
             display: none;
         }
 
-       
         .sidebar {
             position: fixed;
             top: 0;
@@ -229,7 +226,6 @@
             width: auto;
         }
 
-        
         .main-content {
             margin-left: 0;
             padding: 20px;
@@ -242,7 +238,6 @@
             margin-left: var(--sidebar-width);
         }
 
-        
         .sidebar-overlay {
             position: fixed;
             top: 0;
@@ -261,7 +256,6 @@
             visibility: visible;
         }
 
-       
         .header {
             display: flex;
             justify-content: space-between;
@@ -296,7 +290,6 @@
             flex-direction: column;
         }
 
-       
         .sidebar-toggle-x {
             position: absolute;
             left: 10px;
@@ -322,7 +315,6 @@
             box-shadow: 0 6px 15px rgba(106, 17, 203, 0.5);
         }
 
-        
         .sidebar.collapsed ~ .main-content .sidebar-toggle-x {
             display: flex;
         }
@@ -348,7 +340,6 @@
             box-shadow: 0 8px 20px rgba(255, 65, 108, 0.4);
         }
 
-        
         .dashboard-content {
             display: none;
         }
@@ -363,7 +354,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-       
         .welcome-section {
             background: linear-gradient(to right, rgba(106, 17, 203, 0.2), rgba(37, 117, 252, 0.2));
             border-radius: 15px;
@@ -381,7 +371,6 @@
             color: transparent;
         }
 
-        
         .skills-section {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 15px;
@@ -430,7 +419,6 @@
             transition: width 1.5s ease;
         }
 
-        /* Trending Section */
         .trending-section {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 15px;
@@ -461,7 +449,6 @@
             box-shadow: 0 10px 20px rgba(106, 17, 203, 0.2);
         }
 
-        
         .footer {
             text-align: center;
             padding: 20px;
@@ -471,7 +458,6 @@
             color: rgba(255, 255, 255, 0.6);
         }
 
-       
         .content-card {
             background: rgba(26, 26, 46, 0.7);
             border-radius: 15px;
@@ -496,7 +482,6 @@
             margin-top: 5px;
         }
 
-        
         .loading-screen {
             position: fixed;
             top: 0;
@@ -558,7 +543,6 @@
             }
         }
 
-       
         .item-list {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -599,7 +583,103 @@
             margin: 10px 0;
         }
 
-        
+        .qris-btn {
+            background: linear-gradient(to right, #25D366, #128C7E);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-left: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .qris-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+        }
+
+        .payment-method {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border-left: 4px solid #6a11cb;
+        }
+
+        .payment-icon {
+            font-size: 2rem;
+            color: #6a11cb;
+        }
+
+        .server-spec {
+            background: rgba(106, 17, 203, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #2575fc;
+        }
+
+        .server-title {
+            font-size: 1.4rem;
+            color: #2575fc;
+            margin-bottom: 15px;
+        }
+
+        .spec-item {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .spec-icon {
+            color: #6a11cb;
+            width: 20px;
+        }
+
+        .info-box {
+            background: rgba(255, 193, 7, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 25px 0;
+            border-left: 4px solid #FFC107;
+        }
+
+        .info-title {
+            color: #FFC107;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .stock-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stock-item {
+            background: rgba(106, 17, 203, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .stock-count {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #6a11cb;
+            margin: 10px 0;
+        }
+
         @media (max-width: 992px) {
             .sidebar {
                 width: 280px;
@@ -636,7 +716,7 @@
                 font-size: 1.8rem;
             }
 
-            .skills-container, .trending-items {
+            .skills-container, .trending-items, .item-list {
                 grid-template-columns: 1fr;
             }
             
@@ -657,9 +737,12 @@
             .logout-btn {
                 align-self: flex-end;
             }
+            
+            .stock-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
-        
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -677,21 +760,19 @@
             background: linear-gradient(to bottom, #2575fc, #6a11cb);
         }
 
-        
         .main-content {
             -webkit-overflow-scrolling: touch;
         }
     </style>
 </head>
 <body>
-   
     <div class="login-container" id="loginScreen">
         <div class="login-box">
             <div class="logo-login">
                 <i class="fas fa-code"></i>
             </div>
             <h1 class="login-title">IrfanWebsite</h1>
-            <p class="login-subtitle">Login dulu ya brother v:</p>
+            <p class="login-subtitle">Login dulu brother v:</p>
             
             <form id="loginForm">
                 <div class="input-group">
@@ -705,7 +786,7 @@
                 </div>
                 
                 <div class="error-message" id="errorMessage">
-                    Username dan password gak boleh kosong bang 🥰
+                    Username dan password gak boleh kosong bang 🥰 
                 </div>
                 
                 <button type="submit" class="login-btn" id="submitLogin">
@@ -714,12 +795,11 @@
             </form>
             
             <p class="login-note">
-                <i class="fas fa-info-circle"></i> Isi username sama password acak juga boleh asal jgn kosong (:
+                <i class="fas fa-info-circle"></i> username sama password acak juga boleh asal jgn kosong (:
             </p>
         </div>
     </div>
 
-   
     <div class="loading-screen" id="loadingScreen">
         <div class="loader"></div>
         <div class="loading-text" id="loadingText1">Hola <span id="loadingUsername">User</span></div>
@@ -727,9 +807,7 @@
         <div class="loading-text" id="loadingText3">Good luck!</div>
     </div>
 
-  
     <div class="dashboard" id="dashboard">
-       
         <div class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <div class="logo">
@@ -758,15 +836,32 @@
                     <i class="fas fa-gem"></i>
                     <span class="menu-text">Combo List Price</span>
                 </a></li>
+                <li><a href="#" data-target="pembuatanMap">
+                    <i class="fas fa-map"></i>
+                    <span class="menu-text">Pembuatan Map</span>
+                </a></li>
+                <li><a href="#" data-target="jasaPembuatanGame">
+                    <i class="fas fa-gamepad"></i>
+                    <span class="menu-text">Jasa Pembuatan Game</span>
+                </a></li>
+                <li><a href="#" data-target="serverList">
+                    <i class="fas fa-server"></i>
+                    <span class="menu-text">Server List</span>
+                </a></li>
+                <li><a href="#" data-target="nokosList">
+                    <i class="fas fa-list"></i>
+                    <span class="menu-text">Nokos List</span>
+                </a></li>
+                <li><a href="#" data-target="payment">
+                    <i class="fas fa-credit-card"></i>
+                    <span class="menu-text">Payment</span>
+                </a></li>
             </ul>
         </div>
 
-       
         <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-       
         <div class="main-content" id="mainContent">
-           
             <div class="header">
                 <div class="user-info">
                     <div class="user-avatar" id="userAvatar">I</div>
@@ -774,7 +869,6 @@
                         <h3 id="usernameDisplay">User</h3>
                         <p>Welcome back!</p>
                     </div>
-                    
                     <button class="sidebar-toggle-x" id="sidebarToggleX">
                         <i class="fas fa-bars"></i>
                     </button>
@@ -784,7 +878,6 @@
                 </button>
             </div>
 
-            
             <div class="dashboard-content active" id="dashboardContent">
                 <div class="welcome-section">
                     <h1>Hi <span id="welcomeUsername">User</span>, selamat datang di irfanWebsite selamat belanja 👌</h1>
@@ -878,7 +971,6 @@
                 </div>
             </div>
 
-            
             <div class="dashboard-content" id="muridList">
                 <div class="content-card">
                     <div class="content-header">
@@ -923,7 +1015,6 @@
                 </div>
             </div>
 
-           
             <div class="dashboard-content" id="toolsSelling">
                 <div class="content-card">
                     <div class="content-header">
@@ -955,7 +1046,6 @@
                 </div>
             </div>
 
-          
             <div class="dashboard-content" id="rateUser">
                 <div class="content-card">
                     <div class="content-header">
@@ -1003,7 +1093,6 @@
                 </div>
             </div>
 
-      
             <div class="dashboard-content" id="comboList">
                 <div class="content-card">
                     <div class="content-header">
@@ -1040,8 +1129,8 @@
                             <p><em>Coming Soon</em></p>
                         </div>
                     </div>
-                    <div style="margin-top: 30px; padding: 20px; background: rgba(106, 17, 203, 0.1); border-radius: 10px;">
-                        <h3>Information:</h3>
+                    <div class="info-box">
+                        <h3 class="info-title">Information:</h3>
                         <p>Untuk Yang codm dan tiktok mengapa mahal? Karena sangat lumayan sulit untuk mendapatkan nya jdi maklumin saja kawan (:</p>
                     </div>
                     <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
@@ -1049,11 +1138,338 @@
                     </div>
                 </div>
             </div>
+
+            <div class="dashboard-content" id="pembuatanMap">
+                <div class="content-card">
+                    <div class="content-header">
+                        <h2 class="content-title">Pembuatan Map Roblox</h2>
+                        <p class="content-subtitle">Layanan pembuatan map Roblox custom dengan kualitas premium</p>
+                    </div>
+                    <div class="item-list">
+                        <div class="list-item">
+                            <h3 class="list-title">Paket Basic Map</h3>
+                            <p>Pembuatan map sederhana dengan detail minimal</p>
+                            <div class="price-tag">Mulai dari 100k</div>
+                        </div>
+                        <div class="list-item">
+                            <h3 class="list-title">Paket Premium Map</h3>
+                            <p>Pembuatan map detail dengan scripting dan efek khusus</p>
+                            <div class="price-tag">Mulai dari 500k</div>
+                        </div>
+                        <div class="list-item">
+                            <h3 class="list-title">Paket Ultimate Map</h3>
+                            <p>Pembuatan map lengkap dengan semua fitur premium dan optimization</p>
+                            <div class="price-tag">Mulai dari 1.5jt</div>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <h3 class="info-title">Note:</h3>
+                        <p>Harga dapat berubah tergantung kompleksitas dan detail map yang diinginkan. Konsultasi gratis sebelum order!</p>
+                    </div>
+                    <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                        <p>© 2026 Irfan Map Creator</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-content" id="jasaPembuatanGame">
+                <div class="content-card">
+                    <div class="content-header">
+                        <h2 class="content-title">Jasa Pembuatan Game</h2>
+                        <p class="content-subtitle">Halo <span id="gameUsername">User</span>, ini dia layanan pembuatan game kami</p>
+                    </div>
+                    
+                    <div class="server-spec">
+                        <h3 class="server-title">Pembuatan Map #1 (Terima Beres)</h3>
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle spec-icon"></i>
+                            <span>Full map design + implementation</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle spec-icon"></i>
+                            <span>Scripting & game mechanics</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle spec-icon"></i>
+                            <span>Optimization & bug fixing</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle spec-icon"></i>
+                            <span>Full documentation</span>
+                        </div>
+                        <div class="price-tag">200k-3jt / 5$-95$ (USD)</div>
+                    </div>
+                    
+                    <div class="server-spec">
+                        <h3 class="server-title">Pembuatan Map #2 (Map Only - No Blender Character)</h3>
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle spec-icon"></i>
+                            <span>Map design only</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle spec-icon"></i>
+                            <span>Basic terrain & buildings</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle spec-icon"></i>
+                            <span>No character modeling</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle spec-icon"></i>
+                            <span>Basic lighting setup</span>
+                        </div>
+                        <div class="price-tag">100k-1.2jt / 3$-85$ (USD)</div>
+                    </div>
+                    
+                    <div class="info-box">
+                        <h3 class="info-title">Information</h3>
+                        <p><strong>IND:</strong> Sedikit info itu harga tergantung kesulitan mohon, di mengerti terima kasih!</p>
+                        <p><strong>ENG:</strong> A little info the price depends on the difficulty, please understand thank you!</p>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                        <p>© 2026 Alright Reverse</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-content" id="serverList">
+                <div class="content-card">
+                    <div class="content-header">
+                        <h2 class="content-title">Server List</h2>
+                        <p class="content-subtitle">Hi, <span id="serverUsername">User</span> selamat datang di Server List tempat server game berkualitas tinggi</p>
+                    </div>
+                    
+                    <div class="server-spec">
+                        <h3 class="server-title">Spek 1 - Gaming Server Pro</h3>
+                        <div class="spec-item">
+                            <i class="fas fa-microchip spec-icon"></i>
+                            <span><strong>Motherboard:</strong> MSI B650 Gaming Plus WiFi</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-memory spec-icon"></i>
+                            <span><strong>Ram:</strong> 64GB 2x32GB DDR5 6000MHz</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-hdd spec-icon"></i>
+                            <span><strong>Storage:</strong> 2TB NVMe SSD Gen5</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-tv spec-icon"></i>
+                            <span><strong>GPU:</strong> Nvidia GT 1030 2GB GDDR5</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-plug spec-icon"></i>
+                            <span><strong>PSU:</strong> FSP Vita GD 750W 80+ Gold</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-snowflake spec-icon"></i>
+                            <span><strong>Cooling:</strong> Deepcool AK620 Digital</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-box spec-icon"></i>
+                            <span><strong>Case:</strong> Montech Air 903 Base</span>
+                        </div>
+                        <div class="price-tag">26jt / 1.550,06 USD</div>
+                    </div>
+                    
+                    <div class="server-spec">
+                        <h3 class="server-title">Spek 2 - Server Ultimate Edition</h3>
+                        <div class="spec-item">
+                            <i class="fas fa-microchip spec-icon"></i>
+                            <span><strong>Motherboard:</strong> ASUS Pro WS TRX50-SAGE WIFI</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-memory spec-icon"></i>
+                            <span><strong>Ram:</strong> 128GB 4x32GB DDR5 RDIMM ECC Registered</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-hdd spec-icon"></i>
+                            <span><strong>Storage:</strong> 2x 2TB NVMe Gen5 Raid 1 Plus 4TB NVMe Gen4</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-tv spec-icon"></i>
+                            <span><strong>GPU:</strong> NVIDIA RTX 5080 16GB</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-plug spec-icon"></i>
+                            <span><strong>PSU:</strong> Seasonic Prime PX-1300 1300W 80+ Platinum</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-snowflake spec-icon"></i>
+                            <span><strong>Cooling:</strong> Noctua NH-U14S TR4-SP3</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-box spec-icon"></i>
+                            <span><strong>Case:</strong> Fractal Design Meshify 2 XL</span>
+                        </div>
+                        <div class="price-tag">80jt / 4.769,43 USD</div>
+                    </div>
+                    
+                    <div class="server-spec">
+                        <h3 class="server-title">Spek 3 - Budget Gaming Server</h3>
+                        <div class="spec-item">
+                            <i class="fas fa-microchip spec-icon"></i>
+                            <span><strong>Motherboard:</strong> MSI B650 Gaming Plus WiFi</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-memory spec-icon"></i>
+                            <span><strong>Ram:</strong> 32GB 2x16GB DDR5 5600MHz</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-hdd spec-icon"></i>
+                            <span><strong>Storage:</strong> 1TB NVMe SSD Gen4 Samsung 980 Pro</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-tv spec-icon"></i>
+                            <span><strong>GPU:</strong> Integrated Radeon Graphics</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-plug spec-icon"></i>
+                            <span><strong>PSU:</strong> Corsair CX650 650W 80+ Bronze</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-snowflake spec-icon"></i>
+                            <span><strong>Cooling:</strong> Deepcool AG400 Plus</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-box spec-icon"></i>
+                            <span><strong>Case:</strong> Montech Air 100 Lite</span>
+                        </div>
+                        <div class="price-tag">16jt (Only IDR no USD)</div>
+                    </div>
+                    
+                    <div class="info-box">
+                        <h3 class="info-title">Information</h3>
+                        <p><strong>IND:</strong> Sedikit info ini list harga ini untuk kami rakitkan ya kakak, Itu sudah di pilih oleh ahli profesional game 5 tahun dalam bidang server Jadi jangan ragu</p>
+                        <p><strong>ENG:</strong> A little information, this price list is for us to assemble bro it has been selected by professional game experts with 5 years experience in the server field so don't hesitate</p>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                        <p>© 2026 Alright Reverse</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-content" id="nokosList">
+                <div class="content-card">
+                    <div class="content-header">
+                        <h2 class="content-title">Nokos List</h2>
+                        <p class="content-subtitle">Welcome kakak nokos list Silakan di pilih 👌</p>
+                    </div>
+                    
+                    <div class="server-spec">
+                        <h3 class="server-title">Nokos IND</h3>
+                        <div class="spec-item">
+                            <i class="fas fa-mobile-alt spec-icon"></i>
+                            <span><strong>NokosBasic (No unlimited Verif):</strong> 6k</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-mobile-alt spec-icon"></i>
+                            <span><strong>NokosPremium (Unlimited Verif):</strong> 15k</span>
+                        </div>
+                    </div>
+                    
+                    <div class="server-spec">
+                        <h3 class="server-title">Nokos Japan</h3>
+                        <div class="spec-item">
+                            <i class="fas fa-mobile-alt spec-icon"></i>
+                            <span><strong>NokosBasic (No unlimited Verif):</strong> 19k</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-mobile-alt spec-icon"></i>
+                            <span><strong>NokosPremium (Unlimited Verif):</strong> 65k</span>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 30px;">
+                        <h3 class="section-title">Stock List</h3>
+                        <div class="stock-grid">
+                            <div class="stock-item">
+                                <h4>Nokos IND Basic</h4>
+                                <div class="stock-count">35</div>
+                                <p>Stock Tersedia</p>
+                            </div>
+                            <div class="stock-item">
+                                <h4>Nokos IND Premium</h4>
+                                <div class="stock-count">2</div>
+                                <p>Stock Tersedia</p>
+                            </div>
+                            <div class="stock-item">
+                                <h4>Nokos Japan Basic</h4>
+                                <div class="stock-count">7</div>
+                                <p>Stock Tersedia</p>
+                            </div>
+                            <div class="stock-item">
+                                <h4>Nokos Japan Premium</h4>
+                                <div class="stock-count">1</div>
+                                <p>Stock Tersedia</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                        <p>© 2026 irfan Alright Reverse</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-content" id="payment">
+                <div class="content-card">
+                    <div class="content-header">
+                        <h2 class="content-title">Payment Dashboard</h2>
+                        <p class="content-subtitle">Metode pembayaran yang tersedia</p>
+                    </div>
+                    
+                    <div class="payment-method">
+                        <i class="fab fa-cc-diners-club payment-icon"></i>
+                        <div>
+                            <h3>Dana</h3>
+                            <p>0823-1315-4822</p>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-method">
+                        <i class="fab fa-cc-visa payment-icon"></i>
+                        <div>
+                            <h3>Ovo</h3>
+                            <p>0823-1315-4822</p>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-method">
+                        <i class="fab fa-cc-mastercard payment-icon"></i>
+                        <div>
+                            <h3>Gopay</h3>
+                            <p style="color: #ff6b6b;">Maintenance</p>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-method">
+                        <i class="fas fa-qrcode payment-icon"></i>
+                        <div style="flex-grow: 1;">
+                            <h3>QRIS</h3>
+                            <p>Klik tombol dibawah untuk mendapatkan QRIS via WhatsApp</p>
+                            <button class="qris-btn" id="qrisBtn">
+                                <i class="fab fa-whatsapp"></i> Here
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="info-box">
+                        <h3 class="info-title">Note:</h3>
+                        <p>Dilarang mempermainkan Payment karena logs payment akan masuk ke database. Tetapi tenang, aktivitas anda selain payment tidak akan masuk ke database dan sudah memakai encrypt data 3 Layer dan End to End.</p>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                        <p>© 2026 Alright Reverse</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        
         const loginScreen = document.getElementById('loginScreen');
         const dashboard = document.getElementById('dashboard');
         const loginForm = document.getElementById('loginForm');
@@ -1062,7 +1478,6 @@
         const errorMessage = document.getElementById('errorMessage');
         const loadingScreen = document.getElementById('loadingScreen');
         const loadingUsername = document.getElementById('loadingUsername');
-        
         
         const sidebar = document.getElementById('sidebar');
         const sidebarOverlay = document.getElementById('sidebarOverlay');
@@ -1074,14 +1489,12 @@
         const sidebarLinks = document.querySelectorAll('.sidebar-menu a');
         const dashboardContents = document.querySelectorAll('.dashboard-content');
         const mainContent = document.getElementById('mainContent');
+        const qrisBtn = document.getElementById('qrisBtn');
         
+        const gameUsername = document.getElementById('gameUsername');
+        const serverUsername = document.getElementById('serverUsername');
         
         let loggedInUsername = '';
-        let startX = 0;
-        let currentX = 0;
-        let isSwiping = false;
-        let sidebarVisible = true;
-        
         
         loginForm.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -1089,123 +1502,90 @@
             const username = usernameInput.value.trim();
             const password = passwordInput.value.trim();
             
-            
             if (username === '' || password === '') {
                 errorMessage.textContent = 'Username dan password tidak boleh kosong!';
                 errorMessage.style.display = 'block';
-                
-              
                 loginForm.classList.add('shake');
                 setTimeout(() => {
                     loginForm.classList.remove('shake');
                 }, 500);
-                
                 return;
             }
             
-           
             loggedInUsername = username;
-            
-           
             loadingScreen.classList.add('active');
             loadingUsername.textContent = loggedInUsername;
-            
-            
             errorMessage.style.display = 'none';
-            
             
             setTimeout(() => {
                 loadingScreen.classList.remove('active');
-                
-                
                 loginScreen.style.display = 'none';
                 dashboard.style.display = 'block';
-                
                 
                 usernameDisplay.textContent = loggedInUsername;
                 welcomeUsername.textContent = loggedInUsername;
                 userAvatar.textContent = loggedInUsername.charAt(0).toUpperCase();
                 
-               
+                if (gameUsername) gameUsername.textContent = loggedInUsername;
+                if (serverUsername) serverUsername.textContent = loggedInUsername;
+                
                 showNotification(`Selamat datang ${loggedInUsername}!`);
-                
-                
                 initDashboard();
-            }, 10000); // 10 detik
+            }, 10000); 
         });
         
-        // Logout functionality
         logoutBtn.addEventListener('click', () => {
-            
             dashboard.style.display = 'none';
             loginScreen.style.display = 'flex';
-            
-            
             usernameInput.value = '';
             passwordInput.value = '';
-            
-            
-            showNotification('Berhasil logout makasih udah ke website irfan');
-            
-          
+            showNotification('Berhasil logout! Sampai jumpa lagi!');
             sidebar.classList.remove('collapsed');
             sidebarOverlay.classList.remove('active');
             sidebarToggleX.innerHTML = '<i class="fas fa-bars"></i>';
-            sidebarVisible = true;
         });
         
-       
+        if (qrisBtn) {
+            qrisBtn.addEventListener('click', () => {
+                const phoneNumber = '6282313154822';
+                const message = encodeURIComponent('Halo mas Minta qris dong');
+                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+                window.open(whatsappUrl, '_blank');
+            });
+        }
+        
         function initDashboard() {
-           
             sidebarToggleX.addEventListener('click', () => {
                 if (sidebar.classList.contains('collapsed')) {
-                    
                     sidebar.classList.remove('collapsed');
                     sidebarOverlay.classList.add('active');
-                    sidebarVisible = true;
                 }
             });
-            
             
             sidebarOverlay.addEventListener('click', () => {
                 sidebar.classList.add('collapsed');
                 sidebarOverlay.classList.remove('active');
-                sidebarVisible = false;
             });
             
-         
             sidebarLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
-                    
-                    
                     sidebarLinks.forEach(item => item.classList.remove('active'));
-                    
-                    
                     link.classList.add('active');
-                    
-                
                     const targetId = link.getAttribute('data-target');
-                    
-                    
                     dashboardContents.forEach(content => {
                         content.classList.remove('active');
                     });
-                    
-                    
                     document.getElementById(targetId).classList.add('active');
-                    
                     
                     if (targetId !== 'dashboardContent') {
                         const contentTitle = document.querySelector(`#${targetId} .content-title`);
                         if (contentTitle) {
-                           
                             const loadingTexts = [
                                 `Welcome ${loggedInUsername}`,
                                 `Ini dia ${contentTitle.textContent} Yang tersedia`,
                                 "Web made by irfan"
                             ];
-                            
                             
                             const loadingOverlay = document.createElement('div');
                             loadingOverlay.className = 'loading-overlay';
@@ -1215,7 +1595,6 @@
                                 <div class="loading-text-overlay">${loadingTexts[1]}</div>
                                 <div class="loading-text-overlay">${loadingTexts[2]}</div>
                             `;
-                            
                             
                             const style = document.createElement('style');
                             style.textContent = `
@@ -1264,7 +1643,6 @@
                             document.head.appendChild(style);
                             document.getElementById(targetId).appendChild(loadingOverlay);
                             
-                            
                             setTimeout(() => {
                                 loadingOverlay.remove();
                                 style.remove();
@@ -1272,16 +1650,13 @@
                         }
                     }
                     
-                    // only mobile
                     if (window.innerWidth <= 768) {
                         sidebar.classList.add('collapsed');
                         sidebarOverlay.classList.remove('active');
-                        sidebarVisible = false;
                     }
                 });
             });
             
-           
             const skillBars = document.querySelectorAll('.skill-progress');
             skillBars.forEach(bar => {
                 const width = bar.style.width;
@@ -1291,44 +1666,37 @@
                 }, 300);
             });
             
-            
             setupSwipeToClose();
         }
         
-       
         function setupSwipeToClose() {
-           
             mainContent.addEventListener('click', (e) => {
-                if (sidebarVisible && window.innerWidth > 768) {
-                    
+                if (!sidebar.classList.contains('collapsed') && window.innerWidth > 768) {
                     if (!e.target.closest('.sidebar-toggle-x')) {
                         sidebar.classList.add('collapsed');
-                        sidebarVisible = false;
+                        sidebarOverlay.classList.remove('active');
                     }
                 }
             });
-            
             
             let startX = 0;
             let currentX = 0;
             let isSwiping = false;
             
             mainContent.addEventListener('touchstart', (e) => {
-                startX = e.touches[0].clientX;
-                isSwiping = true;
+                if (!sidebar.classList.contains('collapsed')) {
+                    startX = e.touches[0].clientX;
+                    isSwiping = true;
+                }
             });
             
             mainContent.addEventListener('touchmove', (e) => {
-                if (!isSwiping || !sidebarVisible) return;
-                
+                if (!isSwiping || sidebar.classList.contains('collapsed')) return;
                 currentX = e.touches[0].clientX;
                 const diff = startX - currentX;
-                
-                // crot jir 
                 if (diff > 50) {
                     sidebar.classList.add('collapsed');
                     sidebarOverlay.classList.remove('active');
-                    sidebarVisible = false;
                     isSwiping = false;
                 }
             });
@@ -1336,41 +1704,9 @@
             mainContent.addEventListener('touchend', () => {
                 isSwiping = false;
             });
-            
-            
-            mainContent.addEventListener('mousedown', (e) => {
-                if (!sidebarVisible) return;
-                
-                startX = e.clientX;
-                isSwiping = true;
-            });
-            
-            mainContent.addEventListener('mousemove', (e) => {
-                if (!isSwiping || !sidebarVisible) return;
-                
-                currentX = e.clientX;
-                const diff = startX - currentX;
-                
-                
-                if (diff > 100) {
-                    sidebar.classList.add('collapsed');
-                    sidebarVisible = false;
-                    isSwiping = false;
-                }
-            });
-            
-            mainContent.addEventListener('mouseup', () => {
-                isSwiping = false;
-            });
-            
-            mainContent.addEventListener('mouseleave', () => {
-                isSwiping = false;
-            });
         }
         
-     
         function showNotification(message) {
-            
             const notification = document.createElement('div');
             notification.style.cssText = `
                 position: fixed;
@@ -1386,7 +1722,6 @@
             `;
             notification.textContent = message;
             
-           
             const style = document.createElement('style');
             style.textContent = `
                 @keyframes slideIn {
@@ -1399,16 +1734,13 @@
                 }
             `;
             document.head.appendChild(style);
-            
             document.body.appendChild(notification);
             
-        
             setTimeout(() => {
                 notification.remove();
                 style.remove();
             }, 3000);
         }
-        
         
         const style = document.createElement('style');
         style.textContent = `
@@ -1424,4 +1756,4 @@
         document.head.appendChild(style);
     </script>
 </body>
-  </html>
+    </html>
